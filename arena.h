@@ -152,7 +152,7 @@ void arena_drop(arena_t * a) {
     arena_meta_t * am = to_meta(a);
     assert(&am->base == a && "arena_drop() for arena not from arena_init()");
     size_t mm_size = (char*)(am + 1) - (char*)am->addr;
-    munmap(a->data, mm_size);
+    munmap(am->addr, mm_size);
 }
 
 void * arena_failure(arena_t * a, size_t size, size_t align) {
